@@ -57,39 +57,39 @@ func TestAdd(t *testing.T) {
 
 func BenchmarkAdd(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sw := SWrap{0x0, 0x1, 0x2}
-		sw.Push(0x3)
+		sw := New(Fixture())
+		sw.Add(0xFF)
 	}
 }
 
 func TestMerge(t *testing.T) {
-	sw := SWrap{0x0}
-	sw.Merge([]byte{0x1, 0x2, 0x3})
+	sw := New(Fixture())
+	sw.Merge([]byte{0xA, 0xB, 0xC})
 
-	if len(sw) != 4 || sw[0] != 0x0 || sw[3] != 0x3 {
+	if len(sw) != 13 || sw[0] != 0x0 || sw[12] != 0xC {
 		t.Error("fail")
 	}
 }
 
 func BenchmarkMerge(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sw := SWrap{0x0}
-		sw.Merge([]byte{0x1, 0x2, 0x3})
+		sw := New(Fixture())
+		sw.Merge([]byte{0xA, 0xB, 0xC})
 	}
 }
 
 func TestDelete(t *testing.T) {
-	sw := SWrap{0x0, 0x1, 0x2}
+	sw := New(Fixture())
 	sw.Delete(1)
 
-	if len(sw) != 2 || sw[0] != 0x0 || sw[1] != 0x2 {
+	if len(sw) != 9 || sw[0] != 0x0 || sw[1] != 0x2 {
 		t.Error("fail")
 	}
 }
 
 func BenchmarkDelete(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sw := SWrap{0x0, 0x01, 0x02}
+		sw := New(Fixture())
 		sw.Delete(1)
 	}
 }
@@ -118,50 +118,50 @@ func BenchmarkDelete(b *testing.B) {
 //}
 
 func TestPush(t *testing.T) {
-	sw := SWrap{0x0, 0x1, 0x2}
-	sw.Push(0x3)
+	sw := New(Fixture())
+	sw.Push(0xFF)
 
-	if len(sw) != 4 || sw[3] != 0x3 {
+	if len(sw) != 11 || sw[10] != 0xFF {
 		t.Error("fail")
 	}
 }
 
 func BenchmarkPush(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sw := SWrap{0x0, 0x1, 0x2}
-		sw.Push(0x3)
+		sw := New(Fixture())
+		sw.Push(0xFF)
 	}
 }
 
 func TestPop(t *testing.T) {
-	sw := SWrap{0x0, 0x1, 0x2}
+	sw := New(Fixture())
 	x := sw.Pop()
 
-	if x != 0x2 {
+	if x != 0x9 {
 		t.Error("fail")
 	}
 }
 
 func BenchmarkPop(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sw := SWrap{0x0, 0x1, 0x2}
+		sw := New(Fixture())
 		sw.Pop()
 	}
 }
 
 func TestShift(t *testing.T) {
-	sw := SWrap{0x0, 0x01}
-	sw.Shift(0x02)
+	sw := New(Fixture())
+	sw.Shift(0xFF)
 
-	if len(sw) != 3 || sw[0] != 0x2 {
+	if len(sw) != 11 || sw[0] != 0xFF || sw[10] != 0x9 {
 		t.Error("fail")
 	}
 }
 
 func BenchmarkShift(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sw := SWrap{0x0, 0x01}
-		sw.Shift(0x02)
+		sw := New(Fixture())
+		sw.Shift(0xFF)
 	}
 }
 
