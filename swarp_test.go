@@ -166,17 +166,17 @@ func BenchmarkShift(b *testing.B) {
 }
 
 func TestUnShift(t *testing.T) {
-	sw := SWrap{0x0, 0x01, 0x02}
+	sw := New(Fixture())
 	v := sw.UnShift()
 
-	if len(sw) != 2 || v != 0x0 || sw[0] != 0x01 {
+	if len(sw) != 9 || v != 0x0 || sw[0] != 0x1 || sw[8] != 0x9 {
 		t.Error("fail")
 	}
 }
 
 func BenchmarkUnShift(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sw := SWrap{0x0, 0x01, 0x02}
+		sw := New(Fixture())
 		sw.UnShift()
 	}
 }

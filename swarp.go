@@ -61,7 +61,7 @@ func (sw *SWrap) Shift(b byte) {
 func (sw *SWrap) UnShift() byte {
 	s := *sw
 	top := s[0]
-	s[len(s)-1] = 0
+	s[0] = 0
 	*sw = s[1:]
 	return top
 }
