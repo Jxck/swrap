@@ -2,6 +2,10 @@ package swrap
 
 type SWrap []byte
 
+func New(a []byte) SWrap {
+	return SWrap(a)
+}
+
 func (sw *SWrap) Len() int {
 	return len(*sw)
 }
