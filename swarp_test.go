@@ -20,6 +20,15 @@ func TestNew(t *testing.T) {
 	}
 }
 
+func BenchmarkNew(b *testing.B) {
+	by := Fixture()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		New(by)
+	}
+}
+
 func TestLen(t *testing.T) {
 	sw := SWrap{0x0, 0x01, 0x02}
 
