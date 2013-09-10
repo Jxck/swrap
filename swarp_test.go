@@ -20,18 +20,18 @@ func BenchmarkLen(b *testing.B) {
 }
 
 func TestAdd(t *testing.T) {
-	sw := SWrap{}
-	sw.Add(0xa)
+	sw := SWrap{0x0, 0x1, 0x2}
+	sw.Add(0x3)
 
-	if len(sw) != 1 || sw[0] != 0xa {
+	if len(sw) != 4 || sw[3] != 0x3 {
 		t.Error("fail")
 	}
 }
 
 func BenchmarkAdd(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sw := SWrap{}
-		sw.Add(0xa)
+		sw := SWrap{0x0, 0x1, 0x2}
+		sw.Push(0x3)
 	}
 }
 
