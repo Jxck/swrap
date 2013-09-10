@@ -1,0 +1,10 @@
+PASS
+BenchmarkLen		22000000000	1.19ns/op	0B/op	0allocs/op
+BenchmarkAdd		210000000	202ns/op	8B/op	1allocs/op
+BenchmarkMerge		25000000	309ns/op	16B/op	2allocs/op
+BenchmarkDelete		220000000	122ns/op	8B/op	1allocs/op
+BenchmarkCompare	100000000	23.5ns/op	0B/op	0allocs/op
+BenchmarkPush		25000000	430ns/op	33B/op	3allocs/op
+BenchmarkPop		220000000	110ns/op	8B/op	1allocs/op
+BenchmarkShift		25000000	388ns/op	16B/op	2allocs/op
+BenchmarkUnShift	20000000	112ns/op	8B/op	1allocs/op
