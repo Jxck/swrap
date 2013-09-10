@@ -30,25 +30,27 @@ func BenchmarkNew(b *testing.B) {
 }
 
 func TestLen(t *testing.T) {
-	sw := SWrap{0x0, 0x01, 0x02}
+	sw := New(Fixture())
 
-	if sw.Len() != 3 {
+	if sw.Len() != 10 {
 		t.Error("fail")
 	}
 }
 
 func BenchmarkLen(b *testing.B) {
-	sw := SWrap{0x0, 0x01, 0x02}
+	sw := New(Fixture())
+	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
 		sw.Len()
 	}
 }
 
 func TestAdd(t *testing.T) {
-	sw := SWrap{0x0, 0x1, 0x2}
-	sw.Add(0x3)
+	sw := New(Fixture())
+	sw.Add(0xFF)
 
-	if len(sw) != 4 || sw[3] != 0x3 {
+	if len(sw) != 11 || sw[10] != 0xFF {
 		t.Error("fail")
 	}
 }
