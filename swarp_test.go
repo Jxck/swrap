@@ -94,28 +94,32 @@ func BenchmarkDelete(b *testing.B) {
 	}
 }
 
-//func TestCompare(t *testing.T) {
-//	sw1 := SWrap{0x0, 0x1, 0x2}
-//	sw2 := SWrap{0x0, 0x1, 0x2}
-//	sw3 := SWrap{0x0, 0x1}
-//
-//	if !sw1.Compare(sw2) {
-//		t.Error("fail")
-//	}
-//
-//	if sw1.Compare(sw3) {
-//		t.Error("fail")
-//	}
-//}
-//
-//func BenchmarkCompare(b *testing.B) {
-//	sw1 := &Fixture()
-//	sw2 := &Fixture()
-//	sw2.Add(0xFF)
-//	for i := 0; i < b.N; i++ {
-//		sw1.Compare(sw2)
-//	}
-//}
+func TestCompare(t *testing.T) {
+	sw := New(Fixture())
+	by1 := Fixture()
+	by2 := []byte{0x0, 0x1, 0x2}
+
+	if !sw.Compare(by1) {
+		t.Error("fail")
+	}
+
+	if sw.Compare(by2) {
+		t.Error("fail")
+	}
+}
+
+func BenchmarkCompare(b *testing.B) {
+	sw := New(Fixture())
+	by := []byte{
+		0x0, 0x1, 0x2, 0x3, 0x4,
+		0x5, 0x6, 0x7, 0x8, 0x0, // not 0x9
+	}
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		sw.Compare(by)
+	}
+}
 
 func TestPush(t *testing.T) {
 	sw := New(Fixture())
