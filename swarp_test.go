@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func Fixture() *SWrap {
-	return &SWrap{
+func Fixture() []byte {
+	return []byte{
 		0x0, 0x1, 0x2, 0x3, 0x4,
 		0x5, 0x6, 0x7, 0x8, 0x9,
 	}
@@ -89,8 +89,9 @@ func TestCompare(t *testing.T) {
 }
 
 func BenchmarkCompare(b *testing.B) {
-	sw1 := SWrap{0x0, 0x1, 0x2}
-	sw2 := SWrap{0x0, 0x1, 0x2}
+	sw1 := &Fixture()
+	sw2 := &Fixture()
+	sw2.Add(0xFF)
 	for i := 0; i < b.N; i++ {
 		sw1.Compare(sw2)
 	}
