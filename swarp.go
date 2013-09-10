@@ -35,7 +35,7 @@ func (sw SWrap) Compare(b []byte) bool {
 }
 
 func (sw *SWrap) Push(b byte) {
-	sw.Add(b)
+	*sw = append(*sw, b)
 }
 
 func (sw *SWrap) Pop() byte {
