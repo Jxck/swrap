@@ -6,6 +6,10 @@ func New(a []byte) SWrap {
 	return SWrap(a)
 }
 
+func (sw *SWrap) Bytes() []byte {
+	return []byte(*sw)
+}
+
 func (sw *SWrap) Len() int {
 	return len(*sw)
 }

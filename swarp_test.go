@@ -29,6 +29,24 @@ func BenchmarkNew(b *testing.B) {
 	}
 }
 
+func TestBytes(t *testing.T) {
+	sw := New(Fixture())
+	var by []byte = sw.Bytes()
+
+	if len(by) != 10 {
+		t.Error("fail")
+	}
+}
+
+func BenchmarkBytes(b *testing.B) {
+	sw := New(Fixture())
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		sw.Bytes()
+	}
+}
+
 func TestLen(t *testing.T) {
 	sw := New(Fixture())
 
