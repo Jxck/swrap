@@ -30,7 +30,7 @@ func (sw *SWrap) Merge(a []byte) {
 func (sw *SWrap) Delete(i int) {
 	s := *sw
 	copy(s[i:], s[i+1:])
-	s[len(s)-1] = 0
+	s[len(s)-1] = 0 // GC
 	*sw = s[:len(s)-1]
 }
 
@@ -54,7 +54,7 @@ func (sw *SWrap) Push(b byte) {
 func (sw *SWrap) Pop() byte {
 	s := *sw
 	last := s[len(s)-1]
-	s[len(s)-1] = 0
+	s[len(s)-1] = 0 // GC
 	*sw = s[:len(s)-1]
 	return last
 }
@@ -71,7 +71,7 @@ func (sw *SWrap) Shift(b byte) {
 func (sw *SWrap) UnShift() byte {
 	s := *sw
 	top := s[0]
-	s[0] = 0
+	s[0] = 0 // GC
 	*sw = s[1:]
 	return top
 }
