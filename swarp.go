@@ -55,10 +55,12 @@ func (sw *SWrap) Pop() byte {
 }
 
 func (sw *SWrap) Shift(b byte) {
-	s := append(*sw, 0)
-	copy(s[1:], s[:])
-	s[0] = b
-	*sw = s
+	s := *sw
+	l := len(s) + 1
+	ss := make([]byte, l, l)
+	ss[0] = b
+	copy(ss[1:], s[:])
+	*sw = ss
 }
 
 func (sw *SWrap) UnShift() byte {

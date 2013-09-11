@@ -7,5 +7,5 @@ BenchmarkDelete		10000000	167ns/op	16B/op	1allocs/op
 BenchmarkCompare	50000000	61.7ns/op	0B/op	0allocs/op
 BenchmarkPush		5000000		341ns/op	48B/op	2allocs/op
 BenchmarkPop		20000000	119ns/op	16B/op	1allocs/op
-BenchmarkShift		5000000		429ns/op	48B/op	2allocs/op
+BenchmarkShift		10000000	207ns/op	16B/op	1allocs/op
 BenchmarkUnShift	20000000	125ns/op	16B/op	1allocs/op
