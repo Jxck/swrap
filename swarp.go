@@ -19,7 +19,12 @@ func (sw *SWrap) Add(a byte) {
 }
 
 func (sw *SWrap) Merge(a []byte) {
-	*sw = append(*sw, a...)
+	s := *sw
+	l := len(s) + len(a)
+	ss := make([]byte, l, l)
+	copy(ss[0:], s[:])
+	copy(ss[len(s):], a)
+	*sw = ss
 }
 
 func (sw *SWrap) Delete(i int) {

@@ -2,7 +2,7 @@ BenchmarkNew		2000000000	1.70ns/op	0B/op	0allocs/op
 BenchmarkBytes		1000000000	2.19ns/op	0B/op	0allocs/op
 BenchmarkLen		2000000000	1.10ns/op	0B/op	0allocs/op
 BenchmarkAdd		5000000		333ns/op	48B/op	2allocs/op
-BenchmarkMerge		5000000		349ns/op	48B/op	2allocs/op
+BenchmarkMerge		5000000		274ns/op	16B/op	1allocs/op
 BenchmarkDelete		10000000	167ns/op	16B/op	1allocs/op
 BenchmarkCompare	50000000	61.7ns/op	0B/op	0allocs/op
 BenchmarkPush		5000000		341ns/op	48B/op	2allocs/op
