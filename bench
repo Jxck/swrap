@@ -9,3 +9,4 @@ BenchmarkPush		5000000		341ns/op	48B/op	2allocs/op
 BenchmarkPop		20000000	119ns/op	16B/op	1allocs/op
 BenchmarkShift		10000000	207ns/op	16B/op	1allocs/op
 BenchmarkUnShift	20000000	125ns/op	16B/op	1allocs/op
+BenchmarkReplace	5000000		6671ns/op	6227B/op	3allocs/op

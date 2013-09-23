@@ -202,3 +202,24 @@ func BenchmarkUnShift(b *testing.B) {
 		sw.UnShift()
 	}
 }
+
+func TestReplace(t *testing.T) {
+	sw := New(Fixture())
+
+	sw.Replace(5, 0xFF)
+	if len(sw) != 10 || sw[5] != 0xFF {
+		t.Error("fail")
+	}
+
+	sw.Replace(100, 0xFF)
+	if len(sw) != 101 || sw[100] != 0xFF {
+		t.Error("fail")
+	}
+}
+
+func BenchmarkReplace(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		sw := New(Fixture())
+		sw.Replace(100, 0xFF)
+	}
+}
