@@ -78,9 +78,9 @@ func (sw *SWrap) UnShift() byte {
 
 func (sw *SWrap) Replace(i int, b byte) {
 	s := *sw
-	over := i - len(s) + 1
-	if over > 0 {
-		s = append(s, make([]byte, over)...)
+	over := i - len(s)
+	if over > -1 {
+		s = append(s, make([]byte, over+1)...)
 	}
 	s[i] = b
 	*sw = s
