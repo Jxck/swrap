@@ -80,7 +80,9 @@ func (sw *SWrap) Replace(i int, b byte) {
 	s := *sw
 	over := i - len(s)
 	if over > -1 {
-		s = append(s, make([]byte, over+1)...)
+		ss := make([]byte, i+1)
+		copy(ss[0:], s[:])
+		s = ss
 	}
 	s[i] = b
 	*sw = s
