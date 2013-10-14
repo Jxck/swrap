@@ -34,13 +34,14 @@ func (sw *SWrap) Delete(i int) {
 	*sw = s[:len(s)-1]
 }
 
-func (sw SWrap) Compare(b []byte) bool {
-	if len(sw) != len(b) {
+func (sw *SWrap) Compare(b []byte) bool {
+	s := *sw
+	if len(s) != len(b) {
 		return false
 	}
 
 	for i, v := range b {
-		if sw[i] != v {
+		if s[i] != v {
 			return false
 		}
 	}
