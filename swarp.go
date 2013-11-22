@@ -30,7 +30,7 @@ func (sw *SWrap) Merge(a []byte) {
 func (sw *SWrap) Delete(i int) {
 	s := *sw
 	copy(s[i:], s[i+1:])
-	s[len(s)-1] = 0 // GC
+	// s[len(s)-1] = 0 // GC
 	*sw = s[:len(s)-1]
 }
 
