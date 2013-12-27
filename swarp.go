@@ -60,7 +60,8 @@ func (sw *SWrap) Pop() byte {
 	return last
 }
 
-func (sw *SWrap) Shift(b byte) {
+// add byte at the top of swrap
+func (sw *SWrap) UnShift(b byte) {
 	s := *sw
 	l := len(s) + 1
 	ss := make([]byte, l, l)
@@ -69,7 +70,8 @@ func (sw *SWrap) Shift(b byte) {
 	*sw = ss
 }
 
-func (sw *SWrap) UnShift() byte {
+// get byte at the top of swrap
+func (sw *SWrap) Shift() byte {
 	s := *sw
 	top := s[0]
 	s[0] = 0 // GC

@@ -173,9 +173,9 @@ func BenchmarkPop(b *testing.B) {
 
 func TestShift(t *testing.T) {
 	sw := New(Fixture())
-	sw.Shift(0xFF)
+	v := sw.Shift()
 
-	if len(sw) != 11 || sw[0] != 0xFF || sw[10] != 0x9 {
+	if len(sw) != 9 || v != 0x0 || sw[0] != 0x1 || sw[8] != 0x9 {
 		t.Error("fail")
 	}
 }
@@ -183,15 +183,15 @@ func TestShift(t *testing.T) {
 func BenchmarkShift(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sw := New(Fixture())
-		sw.Shift(0xFF)
+		sw.Shift()
 	}
 }
 
 func TestUnShift(t *testing.T) {
 	sw := New(Fixture())
-	v := sw.UnShift()
+	sw.UnShift(0xFF)
 
-	if len(sw) != 9 || v != 0x0 || sw[0] != 0x1 || sw[8] != 0x9 {
+	if len(sw) != 11 || sw[0] != 0xFF || sw[10] != 0x9 {
 		t.Error("fail")
 	}
 }
@@ -199,7 +199,7 @@ func TestUnShift(t *testing.T) {
 func BenchmarkUnShift(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sw := New(Fixture())
-		sw.UnShift()
+		sw.UnShift(0xFF)
 	}
 }
 
