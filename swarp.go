@@ -2,22 +2,33 @@ package swrap
 
 type SWrap []byte
 
+/**
+ * Unshift()v       vPush(), Add()
+ *         [ 1, 2, 3 ]
+ *    Shift()^     ^Pop()
+ */
+
+// create swrap from []byte
 func New(a []byte) SWrap {
 	return SWrap(a)
 }
 
+// get []byte from swrap
 func (sw *SWrap) Bytes() []byte {
 	return []byte(*sw)
 }
 
+// get length of swrap
 func (sw *SWrap) Len() int {
 	return len(*sw)
 }
 
+// add byte at the end of swrap
 func (sw *SWrap) Add(a byte) {
 	*sw = append(*sw, a)
 }
 
+// merge given []byte to swrap ([swrap.., []byte...])
 func (sw *SWrap) Merge(a []byte) {
 	s := *sw
 	l := len(s) + len(a)
@@ -27,6 +38,7 @@ func (sw *SWrap) Merge(a []byte) {
 	*sw = ss
 }
 
+// delete given index value from swrap
 func (sw *SWrap) Delete(i int) {
 	s := *sw
 	copy(s[i:], s[i+1:])
@@ -34,6 +46,7 @@ func (sw *SWrap) Delete(i int) {
 	*sw = s[:len(s)-1]
 }
 
+// compare given []byte with swrap
 func (sw *SWrap) Compare(b []byte) bool {
 	s := *sw
 	if len(s) != len(b) {
@@ -48,10 +61,12 @@ func (sw *SWrap) Compare(b []byte) bool {
 	return true
 }
 
+// add byte at the end of swrap (alias of Add())
 func (sw *SWrap) Push(b byte) {
 	*sw = append(*sw, b)
 }
 
+// get byte at the end of swrap
 func (sw *SWrap) Pop() byte {
 	s := *sw
 	last := s[len(s)-1]
@@ -79,6 +94,7 @@ func (sw *SWrap) Shift() byte {
 	return top
 }
 
+// replace given index value with given byte
 func (sw *SWrap) Replace(i int, b byte) {
 	s := *sw
 	over := i - len(s)
