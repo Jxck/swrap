@@ -223,3 +223,14 @@ func BenchmarkReplace(b *testing.B) {
 		sw.Replace(100, 0xFF)
 	}
 }
+
+func TestFor(t *testing.T) {
+	by := Fixture()
+	sw := New(by)
+
+	for i, v := range sw {
+		if sw[i] != v {
+			t.Error("fail")
+		}
+	}
+}
