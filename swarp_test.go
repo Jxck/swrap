@@ -29,6 +29,24 @@ func BenchmarkNew(b *testing.B) {
 	}
 }
 
+func TestMake(t *testing.T) {
+	by := Fixture()
+	sw := Make(by)
+
+	if (*sw)[0] != 0x0 {
+		t.Error("fail")
+	}
+}
+
+func BenchmarkMake(b *testing.B) {
+	by := Fixture()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		Make(by)
+	}
+}
+
 func TestBytes(t *testing.T) {
 	sw := New(Fixture())
 	var by []byte = sw.Bytes()

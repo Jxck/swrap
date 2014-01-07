@@ -8,9 +8,15 @@ type SWrap []byte
  *    Shift()^     ^Pop()
  */
 
-// create swrap from []byte
+// create swrap from []byte and return
 func New(a []byte) SWrap {
 	return SWrap(a)
+}
+
+// create swrap from []byte and return address
+func Make(a []byte) *SWrap {
+	sw := SWrap(a)
+	return &sw
 }
 
 // get []byte from swrap
