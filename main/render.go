@@ -8,33 +8,33 @@ import (
 )
 
 func main() {
-
+	// read template file
 	b, err := ioutil.ReadFile("./swrap_template")
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	str := string(b)
 
-	type Defun struct {
+	// define params
+	var param = struct {
 		Package, TypeName, Type, Upper string
-	}
-	var defun = Defun{
+	}{
 		Package:  "swrap",
 		TypeName: "SWrap",
 		Type:     "byte",
 		Upper:    "Byte",
 	}
 
-	t := template.Must(template.New("swrap").Parse(str))
-
+	// open output file
 	fd, err := os.Create("./swrap.go")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer fd.Close()
 
-	err = t.Execute(fd, defun)
+	// execute template
+	t := template.Must(template.New("swrap").Parse(str))
+	err = t.Execute(fd, param)
 	if err != nil {
 		log.Fatal(err)
 	}
