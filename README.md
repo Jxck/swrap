@@ -48,13 +48,13 @@ type MyType []string
 
 you can generate like this
 
-```go
+```sh
 $ go run main/generate.go -p myapp -n MyType -t string -f myapp.go
 ```
 
 default value for all param makes swap.go
 
-```go
+```sh
 $ go run main/generate.go -p swrap -n SWrap -t byte -f swrap.go
 ```
 
