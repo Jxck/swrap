@@ -1,11 +1,22 @@
 package main
 
 import (
+	"flag"
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 	"text/template"
 )
+
+var Package, TypeName, Type string
+
+func init() {
+	flag.StringVar(&Package, "p", "swrap", "package name")
+	flag.StringVar(&TypeName, "n", "SWrap", "type name")
+	flag.StringVar(&Type, "t", "byte", "type name")
+	flag.Parse()
+}
 
 func main() {
 	// read template file
@@ -19,10 +30,10 @@ func main() {
 	var param = struct {
 		Package, TypeName, Type, Upper string
 	}{
-		Package:  "swrap",
-		TypeName: "SWrap",
-		Type:     "byte",
-		Upper:    "Byte",
+		Package:  Package,
+		TypeName: TypeName,
+		Type:     Type,
+		Upper:    strings.Title(Type),
 	}
 
 	// open output file
