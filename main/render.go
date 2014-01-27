@@ -9,12 +9,13 @@ import (
 	"text/template"
 )
 
-var Package, TypeName, Type string
+var Package, TypeName, Type, File string
 
 func init() {
 	flag.StringVar(&Package, "p", "swrap", "package name")
 	flag.StringVar(&TypeName, "n", "SWrap", "type name")
 	flag.StringVar(&Type, "t", "byte", "type name")
+	flag.StringVar(&File, "f", "swrap.go", "file name")
 	flag.Parse()
 }
 
@@ -37,7 +38,7 @@ func main() {
 	}
 
 	// open output file
-	fd, err := os.Create("./swrap.go")
+	fd, err := os.Create(File)
 	if err != nil {
 		log.Fatal(err)
 	}
